@@ -16,9 +16,6 @@ void MyGame::Initialize()
 	windowsAPI = std::make_unique<WindowsAPI>();
 	windowsAPI->Initialize();
 
-	audio = std::make_unique<AudioManager>();
-	audio->Initialize();
-
 	//入力の初期化
 	input = std::make_unique<Input>();
 	input->Initialize(windowsAPI.get());
@@ -26,26 +23,13 @@ void MyGame::Initialize()
 	//DirectXの初期化
 	dxCommon = std::make_unique<DirectXCommon>();
 	dxCommon->Initialize(windowsAPI.get());
-	//XAudioのエンジンのインスタンスを生成
-	audio->LoadSound("fanfare", "fanfare.wav");
-	// 音声の再生
-	audio->PlaySound("fanfare");
 
 	srvManager = std::make_unique<SrvManager>();
 	srvManager->Initialize(dxCommon.get());
 
-	//テクスチャマネージャの初期化
-	TextureManager::GetInstance()->Initialize(dxCommon.get(), srvManager.get());
-	//ファイルパス
-	TextureManager::GetInstance()->LoadTexture("./resources/uvChecker.png");
-	TextureManager::GetInstance()->LoadTexture("./resources/pokemon.png");
-
 	//スプライト共通部の初期化
 	spriteCommon = std::make_unique<SpriteCommon>();
 	spriteCommon->Initialize(dxCommon.get());
-
-	sprite = std::make_unique<Sprite>();
-	sprite->Initialize(spriteCommon.get(), dxCommon.get(), "./resources/uvChecker.png");
 
 	//Object3d共通部の初期化
 	object3dCommon = std::make_unique<Object3dCommon>();
@@ -54,16 +38,6 @@ void MyGame::Initialize()
 
 	ModelManager::GetInstance()->Initialize(dxCommon.get());
 	ModelManager::GetInstance()->LoadModel("axis.obj", dxCommon.get());
-
-	///--------------------------------------------
-
-	object3d->Initialize(object3dCommon.get(), dxCommon.get());
-	object3d->SetModel("axis.obj");
-
-	anotherObject3d->Initialize(object3dCommon.get(), dxCommon.get());
-	anotherObject3d->SetModel("plane.obj");
-
-	//---------------------------------------------
 
 	//Object3d共通部の初期化
 	camera = std::make_unique<Camera>();
