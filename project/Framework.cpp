@@ -2,6 +2,7 @@
 
 void Framework::Initialize()
 {
+
 }
 
 void Framework::Finalize()

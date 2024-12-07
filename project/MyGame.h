@@ -3,13 +3,12 @@
 
 // GE3クラス化(MyClass)
 #include "Input.h"
-#include "SpriteCommon.h"
 #include "Object3dCommon.h"
 #include "Model.h"
 #include "ModelCommon.h"
 #include "ModelManager.h"
-#include "Camera.h"
 #include "ImGuiManager.h"
+#include "TextureManager.h"
 
 
 class MyGame : public Framework
@@ -28,12 +27,8 @@ private://メンバ変数
 
 	//ポインタ...Input
 	std::unique_ptr<Input> input = nullptr;
-	//ポインタ...SpriteCommon
-	std::unique_ptr<SpriteCommon> spriteCommon = nullptr;
 	//ポインタ...Object3dCommon
 	std::unique_ptr<Object3dCommon> object3dCommon = nullptr;
-	//ポインタ...Camera
-	std::unique_ptr<Camera> camera = nullptr;
 	//ポインタ...ImGuiManager
 	std::unique_ptr<ImGuiManager>  imguiManager = nullptr;
 

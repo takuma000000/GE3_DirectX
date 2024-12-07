@@ -3,6 +3,8 @@
 #include "engine/2d/Sprite.h"
 #include "Object3d.h"
 #include "TextureManager.h"
+#include "SpriteCommon.h"
+#include "Camera.h"
 
 class GameScene
 {
@@ -23,6 +25,8 @@ private:
 	std::unique_ptr<AudioManager> audio = nullptr;
 	//ポインタ...Sprite
 	std::unique_ptr<Sprite> sprite = nullptr;
+	//ポインタ...SpriteCommon
+	//std::unique_ptr<SpriteCommon> spriteCommon = nullptr;
 
 	//Object3dの初期化
 	Object3d* object3d = new Object3d();

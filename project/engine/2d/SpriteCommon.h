@@ -5,7 +5,13 @@ class SpriteCommon
 {
 
 public://メンバ関数...初期化
+
+	// シングルトンインスタンスの取得
+	static SpriteCommon* GetInstance();
+
 	void Initialize(DirectXCommon* dxCommon);
+	//終了
+	void Finalize();
 	//共通描画設定
 	void DrawSetCommon();
 
@@ -19,6 +25,15 @@ public://getter
 	DirectXCommon* GetDxCommon() const { return dxCommon_; }
 
 private:
+
+	static SpriteCommon* instance;
+
+	SpriteCommon() = default;
+	~SpriteCommon() = default;
+	SpriteCommon(SpriteCommon&) = delete;
+	SpriteCommon& operator=(SpriteCommon&) = delete;
+
+
 	DirectXCommon* dxCommon_;
 	D3D12_ROOT_SIGNATURE_DESC descriptionRootSignature{};
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC graphicPipelineStateDesc{};

@@ -27,28 +27,15 @@ void MyGame::Initialize()
 	srvManager = std::make_unique<SrvManager>();
 	srvManager->Initialize(dxCommon.get());
 
-	//スプライト共通部の初期化
-	spriteCommon = std::make_unique<SpriteCommon>();
-	spriteCommon->Initialize(dxCommon.get());
-
 	//Object3d共通部の初期化
 	object3dCommon = std::make_unique<Object3dCommon>();
 	object3dCommon->Initialize(dxCommon.get());
 
+	//テクスチャマネージャの初期化
+	TextureManager::GetInstance()->Initialize(dxCommon.get(), srvManager.get());
 
 	ModelManager::GetInstance()->Initialize(dxCommon.get());
 	ModelManager::GetInstance()->LoadModel("axis.obj", dxCommon.get());
-
-	//Object3d共通部の初期化
-	camera = std::make_unique<Camera>();
-	camera->SetRotate({ 0.0f,0.0f,0.0f });
-	camera->SetTranslate({ 0.0f,0.0f,-30.0f });
-	//object3dCommon->SetDefaultCamera(camera.get());
-	object3d->SetCamera(camera.get());
-	anotherObject3d->SetCamera(camera.get());
-	//ImGui用のcamera設定
-	Vector3 cameraPosition = camera->GetTranslate();
-	Vector3 cameraRotation = camera->GetRotate();
 
 	imguiManager = std::make_unique<ImGuiManager>();
 	imguiManager->Initialize(windowsAPI.get(), dxCommon.get());
