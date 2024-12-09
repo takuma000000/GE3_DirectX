@@ -17,6 +17,9 @@ public:
 	// コンストラクタ
 	//DirectXCommon();
 
+	// シングルトンインスタンスの取得
+	static DirectXCommon* GetInstance();
+
 public: //getter
 	ID3D12Device* GetDevice() const { return device.Get(); }
 	ID3D12GraphicsCommandList* GetCommandList() const { return commandList.Get(); }
@@ -151,6 +154,17 @@ private:
 
 	//backBufferの代わり
 	uint32_t backBufferChange = 2;
+
+private://シングルトン
+	static std::unique_ptr<DirectXCommon> instance;
+
+	friend std::unique_ptr<DirectXCommon> std::make_unique<DirectXCommon>();
+	friend std::default_delete<DirectXCommon>;
+
+	DirectXCommon() = default;
+	~DirectXCommon() = default;
+	DirectXCommon(DirectXCommon&) = delete;
+	DirectXCommon& operator=(DirectXCommon&) = delete;
 
 };
 

@@ -5,6 +5,8 @@
 #include "TextureManager.h"
 #include "SpriteCommon.h"
 #include "Camera.h"
+#include "DirectXCommon.h"
+#include "Object3dCommon.h"
 
 class GameScene
 {
@@ -25,8 +27,8 @@ private:
 	std::unique_ptr<AudioManager> audio = nullptr;
 	//ポインタ...Sprite
 	std::unique_ptr<Sprite> sprite = nullptr;
-	//ポインタ...SpriteCommon
-	//std::unique_ptr<SpriteCommon> spriteCommon = nullptr;
+	//ポインタ...Camera
+	std::unique_ptr<Camera> camera = nullptr;
 
 	//Object3dの初期化
 	Object3d* object3d = new Object3d();

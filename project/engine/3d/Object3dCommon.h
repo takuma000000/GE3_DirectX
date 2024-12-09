@@ -7,6 +7,10 @@ class Object3dCommon
 {
 
 public://メンバ関数
+
+	// シングルトンインスタンスの取得
+	static Object3dCommon* GetInstance();
+
 	void Initialize(DirectXCommon* dxCommon);
 	//共通描画設定
 	void DrawSetCommon();
@@ -39,6 +43,17 @@ private://メンバ変数
 
 	//デフォルトカメラ
 	Camera* defaultCamera_ = nullptr;
+
+	static std::unique_ptr<Object3dCommon> instance;
+
+	friend std::unique_ptr<Object3dCommon> std::make_unique<Object3dCommon>();
+	friend std::default_delete<Object3dCommon>;
+
+	Object3dCommon() = default;
+	~Object3dCommon() = default;
+	Object3dCommon(Object3dCommon&) = delete;
+	Object3dCommon& operator=(Object3dCommon&) = delete;
+
 
 };
 

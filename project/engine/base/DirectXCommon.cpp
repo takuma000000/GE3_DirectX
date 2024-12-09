@@ -2,6 +2,7 @@
 #include "SrvManager.h"
 #include <cassert>
 #include <format>
+#include <thread>
 #include "Logger.h"
 #include "StringUtility.h"
 //#include "externals/imgui/imgui.h"
@@ -26,6 +27,8 @@ using namespace Microsoft::WRL;
 //{
 //	// 初期化コードがあればここに記述
 //}
+
+std::unique_ptr<DirectXCommon> DirectXCommon::instance = nullptr;
 
 Microsoft::WRL::ComPtr<ID3D12Resource> CreateDepthStencilTextureResource(Microsoft::WRL::ComPtr<ID3D12Device> device, int32_t width, int32_t height) {
 	//生成するResourceの設定
@@ -79,6 +82,15 @@ Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> DirectXCommon::CreateDescriptorHeap
 	return descriptorHeap;
 }
 
+
+DirectXCommon* DirectXCommon::GetInstance()
+{
+	if (instance == nullptr) {
+		instance = std::make_unique<DirectXCommon>();
+	}
+
+	return instance.get();
+}
 
 void DirectXCommon::Initialize(WindowsAPI* windowsAPI)
 {

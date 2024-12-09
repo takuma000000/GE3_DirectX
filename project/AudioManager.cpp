@@ -10,10 +10,8 @@ AudioManager::~AudioManager() {
 
 void AudioManager::Initialize() {
 	HRESULT hr = XAudio2Create(&xAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);
-	assert(SUCCEEDED(hr));
 
 	hr = xAudio2->CreateMasteringVoice(&masterVoice);
-	assert(SUCCEEDED(hr));
 }
 
 void AudioManager::Finalize() {
@@ -61,11 +59,8 @@ void AudioManager::PlaySound(const std::string& key) {
 	buffer.Flags = XAUDIO2_END_OF_STREAM;
 
 	hr = sourceVoice->SubmitSourceBuffer(&buffer);
-	assert(SUCCEEDED(hr));
-
 	hr = sourceVoice->Start();
-	assert(SUCCEEDED(hr));
-
+	
 	// 音声の終了を待つ
 	XAUDIO2_VOICE_STATE state;
 	do {

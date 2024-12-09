@@ -2,6 +2,17 @@
 #include "Logger.h"
 using namespace Logger;
 
+std::unique_ptr<Object3dCommon> Object3dCommon::instance = nullptr;
+
+Object3dCommon* Object3dCommon::GetInstance()
+{
+	if (instance == nullptr) {
+		instance = std::make_unique<Object3dCommon>();
+	}
+
+	return instance.get();
+}
+
 void Object3dCommon::Initialize(DirectXCommon* dxCommon)
 {
 	//引数で受け取ってメンバ変数に記録する

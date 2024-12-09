@@ -1,5 +1,6 @@
 #pragma once
 #include "Framework.h"
+#include "GameScene.h"
 
 // GE3クラス化(MyClass)
 #include "Input.h"
@@ -34,6 +35,11 @@ private://メンバ変数
 
 	D3D12_VIEWPORT viewport;
 	D3D12_RECT scissorRect;
+
+	/// <summary>
+	/// シーン
+	/// </summary>
+	GameScene* scene_ = nullptr;
 
 private:
 	//フラグ
