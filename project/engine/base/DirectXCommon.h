@@ -87,22 +87,6 @@ public: //リソース生成関数
 		UINT numDescriptors,
 		bool shaderVisible);
 
-	//public: //テクスチャファイル読み込み関数
-	//	//テクスチャファイルの読み込み
-	//	DirectX::ScratchImage LoadTexture(const std::string& filePath);
-
-//public: //色々な関数
-//	//指定番号のCPUディスクリプタハンドルを取得する
-//	static D3D12_CPU_DESCRIPTOR_HANDLE GetCPUDescriptorHandle(ID3D12DescriptorHeap* descriptorHeap, uint32_t descriptorSize, uint32_t index);
-//	//指定番号のGPUディスクリプタハンドルを取得する
-//	static D3D12_GPU_DESCRIPTOR_HANDLE GetGPUDescriptorHandle(ID3D12DescriptorHeap* descriptorHeap, uint32_t descriptorSize, uint32_t index);
-//
-//public:
-//	//SRVの指定番号のCPUディスクリプタハンドルを取得する
-//	D3D12_CPU_DESCRIPTOR_HANDLE GetSRVCPUDescriptorHandle(uint32_t index);
-//	//SRVの指定番号のGPUディスクリプタハンドルを取得する
-//	D3D12_GPU_DESCRIPTOR_HANDLE GetSRVGPUDescriptorHandle(uint32_t index);
-
 public: //描画関数
 	//描画前処理
 	void PreDraw();
@@ -128,9 +112,6 @@ private:
 	//DescriptorHeap
 	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc{};
 	Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> rtvDescriptorHeap;
-	//Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> srvDescriptorHeap;
-	//DescriptorSizeを取得しておく
-	//uint32_t descriptorSizeSRV;
 	uint32_t descriptorSizeRTV;
 	uint32_t descriptorSizeDSV;
 	Microsoft::WRL::ComPtr<ID3D12Resource> depthStencilResource;

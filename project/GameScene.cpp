@@ -15,7 +15,7 @@ void GameScene::Initialize()
 	TextureManager::GetInstance()->LoadTexture("./resources/pokemon.png");
 
 	//スプライト共通部の初期化
-	//SpriteCommon::GetInstance()->Initialize(dx)
+	SpriteCommon::GetInstance()->Initialize(dx)
 
 	/*sprite = std::make_unique<Sprite>();
 	sprite->Initialize(SpriteCommon::GetInstance(), dxCommon.get(), "./resources/uvChecker.png");*/
